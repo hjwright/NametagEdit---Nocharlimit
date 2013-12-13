@@ -1,0 +1,7 @@
+name: NametagEdit
+main: ca.wacos.nametagedit.NametagEdit
+version: 2.0
+commands:
+   ne:
+      description: NametagEdit commands
+      usage: /ne <operation> <player> <text>
