@@ -1,6 +1,6 @@
 == TEMPLATE
 
-TEMPLATE <DESCRIPTION>
+Nametags. In minecraft. Wooaaahh!
 
 === Compiling
 
