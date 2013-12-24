@@ -1,5 +1,4 @@
-NametagEdit
-===========
+=== NametagEdit
 
 Set your nameplate and tab name utilizing scoreboard packets.
 
