@@ -1,6 +1,6 @@
-=== NametagEdit
+= NametagEdit
 
-Set your nameplate and tab name utilizing scoreboard packets.
+Set your nameplate and tab name utilizing scoreboard packets. Doesn't interefere with pre-existing scoreboards from functioning.
 
 BukkitDev: http://dev.bukkit.org/bukkit-plugins/nametagedit/
 
