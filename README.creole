@@ -4,4 +4,4 @@ Set your nameplate and tab name utilizing scoreboard packets. Doesn't interefere
 
 BukkitDev: http://dev.bukkit.org/bukkit-plugins/nametagedit/
 
-Jenkins: http://ci.playmc.cc/jobs/NametagEdit
+Jenkins: http://ci.playmc.cc/job/NametagEdit
