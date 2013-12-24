@@ -3,6 +3,7 @@
 Set your nameplate and tab name utilizing scoreboard packets.
 
 BukkitDev: http://dev.bukkit.org/bukkit-plugins/nametagedit/
+
 Jenkins: http://ci.playmc.cc/jobs/NametagEdit
 
 === Compiling
