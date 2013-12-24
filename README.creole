@@ -9,5 +9,7 @@ Jenkins: http://ci.playmc.cc/jobs/NametagEdit
 === Compiling
 
 Desc: Maven 3 is required to compile NametagEdit
+
 1) Install Maven in your select IDE
+
 2) Run as Maven build: clean install
