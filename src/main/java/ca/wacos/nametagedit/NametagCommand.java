@@ -88,7 +88,9 @@ class NametagCommand implements CommandExecutor {
                         }
                     } else {
 
-                        NametagManager.clear(target);
+                    	if (PlayerLoader.getPlayer(target) == null) {
+                            NametagManager.clear(target);
+                        }
 
                     }
 

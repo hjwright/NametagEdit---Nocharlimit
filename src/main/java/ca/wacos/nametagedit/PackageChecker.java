@@ -12,45 +12,46 @@ import java.util.zip.ZipInputStream;
  * package names for NMS and CB classes.
  */
 class PackageChecker {
-	private static final String PACKAGE_PREFIX = "org/bukkit/craftbukkit/v";
-	private static String version = "";
-	static {
-		try {
-			File file = new File(Bukkit.class.getProtectionDomain()
-					.getCodeSource().getLocation().toURI().getPath());
 
-			ZipInputStream zis = new ZipInputStream(new FileInputStream(file));
+    private static final String PACKAGE_PREFIX = "org/bukkit/craftbukkit/v";
+    private static String version = "";
 
-			ZipEntry entry;
+    static {
+        try {
+            File file = new File(Bukkit.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 
-			while ((entry = zis.getNextEntry()) != null) {
+            ZipInputStream zis = new ZipInputStream(new FileInputStream(file));
 
-				// For them pesky Windows users...
-				String name = entry.getName().replace("\\", "/");
+            ZipEntry entry;
 
-				if (name.startsWith(PACKAGE_PREFIX)) {
-					String ver = "";
-					for (int t = PACKAGE_PREFIX.length(); t < name.length(); t++) {
-						char c = name.charAt(t);
-						if (c != '/')
-							ver += c;
-						else
-							break;
-					}
-					version = "v" + ver;
-					break;
-				}
-			}
+            while ((entry = zis.getNextEntry()) != null) {
 
-			zis.close();
-		} catch (Exception e) {
-			System.out
-					.println("Could not locate craftbukkit's package version (you're probably going to have a lot of errors after this!)");
-			e.printStackTrace();
-		}
-	}
+                // For them pesky Windows users...
+                String name = entry.getName().replace("\\", "/");
 
-	public static String getVersion() {
-		return version;
-	}
+                if (name.startsWith(PACKAGE_PREFIX)) {
+                    String ver = "";
+                    for (int t = PACKAGE_PREFIX.length(); t < name.length(); t++) {
+                        char c = name.charAt(t);
+                        if (c != '/') {
+                            ver += c;
+                        } else {
+                            break;
+                        }
+                    }
+                    version = "v" + ver;
+                    break;
+                }
+            }
+
+            zis.close();
+        } catch (Exception e) {
+            System.out.println("Could not locate craftbukkit's package version (you're probably going to have a lot of errors after this!)");
+            e.printStackTrace();
+        }
+    }
+
+    public static String getVersion() {
+        return version;
+    }
 }

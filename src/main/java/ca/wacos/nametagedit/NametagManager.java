@@ -121,7 +121,7 @@ class NametagManager {
     private static String[] getTeamPlayers(TeamInfo team) {
         List<String> list = teams.get(team);
         if (list != null) {
-
+            
             return list.toArray(new String[list.size()]);
         } else {
             return new String[0];
@@ -160,9 +160,11 @@ class NametagManager {
 
         if (prefix == null || prefix.isEmpty()) {
             prefix = getPrefix(player);
+                        
         }
         if (suffix == null || suffix.isEmpty()) {
             suffix = getSuffix(player);
+           
         }
 
         TeamInfo t = get(prefix, suffix);
@@ -218,6 +220,7 @@ class NametagManager {
     static String getPrefix(String player) {
         for (TeamInfo team : getTeams()) {
             for (String p : getTeamPlayers(team)) {
+                
                 if (p.equals(player)) {
                     return team.getPrefix();
                 }
@@ -295,11 +298,13 @@ class NametagManager {
 
             if (getTeam(TEAM_NAME_PREFIX + t) != null) {
                 TeamInfo team = getTeam(TEAM_NAME_PREFIX + t);
+
                 if (team.getSuffix().equals(suffix) && team.getPrefix().equals(prefix)) {
                     return team;
                 }
             }
         }
+        
         return declareTeam(TEAM_NAME_PREFIX + nextName(), prefix, suffix);
 
     }

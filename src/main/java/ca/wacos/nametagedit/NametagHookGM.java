@@ -16,4 +16,8 @@ public class NametagHookGM implements Listener {
             }
         }
     }
+
+    void getPermissions(String player) {
+
+    }
 }

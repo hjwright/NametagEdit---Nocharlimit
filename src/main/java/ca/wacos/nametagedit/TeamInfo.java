@@ -4,32 +4,33 @@ package ca.wacos.nametagedit;
  * Represents a scoreboard team, used in the NametagManager object.
  */
 class TeamInfo {
-	private String name;
-	private String prefix;
-	private String suffix;
 
-	TeamInfo(String name) {
-		this.name = name;
-	}
+    private String name;
+    private String prefix;
+    private String suffix;
 
-	void setPrefix(String prefix) {
-		this.prefix = prefix;
-	}
+    TeamInfo(String name) {
+        this.name = name;
+    }
 
-	void setSuffix(String suffix) {
-		this.suffix = suffix;
-	}
+    void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
 
-	String getPrefix() {
-		return prefix;
-	}
+    void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
 
-	String getSuffix() {
-		return suffix;
-	}
+    String getPrefix() {
+        return prefix;
+    }
 
-	String getName() {
-		return name;
-	}
+    String getSuffix() {
+        return suffix;
+    }
+
+    String getName() {
+        return name;
+    }
 
 }
