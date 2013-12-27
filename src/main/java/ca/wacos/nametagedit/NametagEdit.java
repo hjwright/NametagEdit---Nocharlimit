@@ -24,6 +24,7 @@ public class NametagEdit extends JavaPlugin {
 	static boolean tabListEnabled = false;
 	static boolean deathMessageEnabled = false;
 	static boolean checkForUpdatesEnabled = false;
+	static boolean consolePrintEnabled = false;
 	public static GroupManager groupManager;
 	static NametagEdit plugin = null;
 	public static String permissions = "";
@@ -134,6 +135,8 @@ public class NametagEdit extends JavaPlugin {
 				"death-message-mask", "enabled", config, false);
 		NametagEdit.checkForUpdatesEnabled = ConfigLoader.parseBoolean(
 				"check-for-updates", "enabled", config, true);
+		NametagEdit.consolePrintEnabled = ConfigLoader.parseBoolean(
+				"console-print-enabled", "enabled", config, true);
 
 		this.getServer().getScheduler()
 				.scheduleSyncDelayedTask(this, new Runnable() {

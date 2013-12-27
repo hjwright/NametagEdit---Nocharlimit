@@ -49,9 +49,11 @@ class NametagEventHandler implements Listener {
 				suffix = NametagUtils.formatColors(suffix);
 			}
 			if (GroupLoader.DEBUG) {
+				if(NametagEdit.consolePrintEnabled){
 				System.out.println("Setting prefix/suffix for "
 						+ e.getPlayer().getName() + ": " + prefix + ", "
 						+ suffix + " (user)");
+				}
 			}
 			NametagManager.overlap(e.getPlayer().getName(), prefix, suffix);
 			setGroup = false;
@@ -70,9 +72,11 @@ class NametagEventHandler implements Listener {
 						suffix = NametagUtils.formatColors(suffix);
 					}
 					if (GroupLoader.DEBUG) {
+						if(NametagEdit.consolePrintEnabled){
 						System.out.println("Setting prefix/suffix for "
 								+ e.getPlayer().getName() + ": " + prefix
 								+ ", " + suffix + " (node)");
+						}
 					}
 					NametagCommand.setNametagHard(e.getPlayer().getName(),
 							prefix, suffix,

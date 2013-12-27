@@ -88,6 +88,9 @@ class ConfigLoader {
 		out.println("");
 		out.println("// If enabled, this plugin will check for updates when a operator logs in.");
 		out.println("check-for-updates enabled = true");
+		out.println("");
+		out.println("// If enabled, this plugin will not print 'Setting prefix/suffix' information in the console");
+		out.println("console-print-enabled enabled = true");
 
 		out.close();
 
