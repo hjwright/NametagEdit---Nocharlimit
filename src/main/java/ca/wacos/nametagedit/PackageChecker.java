@@ -13,45 +13,47 @@ import java.util.zip.ZipInputStream;
  */
 class PackageChecker {
 
-    private static final String PACKAGE_PREFIX = "org/bukkit/craftbukkit/v";
-    private static String version = "";
+	private static final String PACKAGE_PREFIX = "org/bukkit/craftbukkit/v";
+	private static String version = "";
 
-    static {
-        try {
-            File file = new File(Bukkit.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+	static {
+		try {
+			File file = new File(Bukkit.class.getProtectionDomain()
+					.getCodeSource().getLocation().toURI().getPath());
 
-            ZipInputStream zis = new ZipInputStream(new FileInputStream(file));
+			ZipInputStream zis = new ZipInputStream(new FileInputStream(file));
 
-            ZipEntry entry;
+			ZipEntry entry;
 
-            while ((entry = zis.getNextEntry()) != null) {
+			while ((entry = zis.getNextEntry()) != null) {
 
-                // For them pesky Windows users...
-                String name = entry.getName().replace("\\", "/");
+				// For them pesky Windows users...
+				String name = entry.getName().replace("\\", "/");
 
-                if (name.startsWith(PACKAGE_PREFIX)) {
-                    String ver = "";
-                    for (int t = PACKAGE_PREFIX.length(); t < name.length(); t++) {
-                        char c = name.charAt(t);
-                        if (c != '/') {
-                            ver += c;
-                        } else {
-                            break;
-                        }
-                    }
-                    version = "v" + ver;
-                    break;
-                }
-            }
+				if (name.startsWith(PACKAGE_PREFIX)) {
+					String ver = "";
+					for (int t = PACKAGE_PREFIX.length(); t < name.length(); t++) {
+						char c = name.charAt(t);
+						if (c != '/') {
+							ver += c;
+						} else {
+							break;
+						}
+					}
+					version = "v" + ver;
+					break;
+				}
+			}
 
-            zis.close();
-        } catch (Exception e) {
-            System.out.println("Could not locate craftbukkit's package version (you're probably going to have a lot of errors after this!)");
-            e.printStackTrace();
-        }
-    }
+			zis.close();
+		} catch (Exception e) {
+			System.out
+					.println("Could not locate craftbukkit's package version (you're probably going to have a lot of errors after this!)");
+			e.printStackTrace();
+		}
+	}
 
-    public static String getVersion() {
-        return version;
-    }
+	public static String getVersion() {
+		return version;
+	}
 }
