@@ -1,6 +1,6 @@
 name: NametagEdit
 main: ca.wacos.nametagedit.NametagEdit
-version: 1.9
+version: 2.0
 commands:
    ne:
       description: NametagEdit commands
