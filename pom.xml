@@ -1,15 +1,21 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.wacos</groupId>
     <artifactId>NametagEdit</artifactId>
-    <version>2.0</version>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
     <name>NametagEdit</name>
-    <url>https://github.com/sgtcaze/NametagEdit</url>
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/sgtcaze/NametagEdit/issues</url>
-    </issueManagement>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+  
     <build>
+        <defaultGoal>clean install</defaultGoal>
         <finalName>NametagEdit</finalName>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
         <resources>
@@ -18,13 +24,12 @@
                 <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources/</directory>
                 <includes>
-                    <include>*.yml</include>
+                    <include>*.*</include>
                 </includes>
             </resource>
         </resources>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
@@ -32,54 +37,22 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/main/assembly/package.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>build</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-file</artifactId>
-                <version>2.2</version>
-            </extension>
-        </extensions>
     </build>
-    <repositories>
-        <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public/</url>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>LATEST</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-	    <dependency>
+		</dependency>
+		<dependency>
             <groupId>ru.tekode</groupId>
             <artifactId>PermissionsEX</artifactId>
             <version>1.20.4</version>
             <scope>system</scope>
             <systemPath>${basedir}/libs/PermissionsEX.jar</systemPath>
        </dependency>
-        <dependency>
+       <dependency>
             <groupId>org.anjocaido</groupId>
             <artifactId>GroupManager</artifactId>
             <version>2.12.1</version>
@@ -87,7 +60,10 @@
             <systemPath>${basedir}/libs/EssentialsGroupManager.jar</systemPath>
        </dependency>
     </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <repositories>
+        <repository>
+            <id>bukkit-repo</id>
+            <url>http://repo.bukkit.org/content/groups/public/</url>
+        </repository>
+    </repositories>
 </project>
