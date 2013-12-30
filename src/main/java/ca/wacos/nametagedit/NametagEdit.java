@@ -63,7 +63,7 @@ public class NametagEdit extends JavaPlugin {
 		// Updater Hook ~ We love Gravity :)
 		if (getConfig().getBoolean("CheckForUpdates")) {
 			updater = new Updater(this, 54012, this.getFile(),
-					Updater.UpdateType.DEFAULT, false);
+					Updater.UpdateType.DEFAULT, true);
 			name = updater.getLatestName(); // Get the latest name
 			version = updater.getLatestGameVersion(); // Get the latest game
 														// version
@@ -249,11 +249,16 @@ public class NametagEdit extends JavaPlugin {
 			String[] a) {
 		Player player = (Player) sender;
 		if (cmd.getName().equalsIgnoreCase("nte")) {
-			if (a.length < 1) {
-				player.sendMessage("§aRun Update/Downloader - §e/nte update");
-			} else if (a[0].equalsIgnoreCase("update")) {
-				player.sendMessage("§aCommencing update process. Beep bop.");
-				runUpdate();
+			if (player.hasPermission("NametagEdit.update")
+					&& checkForUpdatesEnabled) {
+				if (a.length < 1) {
+					player.sendMessage("§aRun Update/Downloader - §e/nte update");
+				} else if (a[0].equalsIgnoreCase("update")) {
+					player.sendMessage("§aCommencing update process. Beep bop.");
+					runUpdate();
+				}
+			} else {
+				player.sendMessage("§cUpdater is disabled.");
 			}
 		}
 		return false;
