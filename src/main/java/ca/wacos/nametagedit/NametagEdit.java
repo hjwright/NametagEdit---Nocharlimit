@@ -49,6 +49,8 @@ public class NametagEdit extends JavaPlugin {
 		getCommand("ne").setExecutor(new NametagCommand());
 		load();
 
+		saveDefaultConfig();
+
 		this.getServer().getScheduler()
 				.scheduleSyncDelayedTask(this, new Runnable() {
 
@@ -127,16 +129,15 @@ public class NametagEdit extends JavaPlugin {
 
 		groups = GroupLoader.load(this);
 
-		config = ConfigLoader.load(this);
+		// config = ConfigLoader.load(this);
 
-		NametagEdit.tabListEnabled = ConfigLoader.parseBoolean("tab-list-mask",
-				"enabled", config, false);
-		NametagEdit.deathMessageEnabled = ConfigLoader.parseBoolean(
-				"death-message-mask", "enabled", config, false);
-		NametagEdit.checkForUpdatesEnabled = ConfigLoader.parseBoolean(
-				"check-for-updates", "enabled", config, true);
-		NametagEdit.consolePrintEnabled = ConfigLoader.parseBoolean(
-				"console-print-enabled", "enabled", config, true);
+		NametagEdit.tabListEnabled = getConfig().getBoolean("TabListEnabled");
+		NametagEdit.deathMessageEnabled = getConfig().getBoolean(
+				"DeathMessageEnabled");
+		NametagEdit.checkForUpdatesEnabled = getConfig().getBoolean(
+				"CheckForUpdates");
+		NametagEdit.consolePrintEnabled = getConfig().getBoolean(
+				"ConsolePrintEnabled");
 
 		this.getServer().getScheduler()
 				.scheduleSyncDelayedTask(this, new Runnable() {
