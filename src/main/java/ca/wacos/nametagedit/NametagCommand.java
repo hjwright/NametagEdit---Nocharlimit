@@ -180,7 +180,7 @@ class NametagCommand implements CommandExecutor {
 				} else {
 					sender.sendMessage("§eUnknown operation \'" + operation
 							+ "\', type §a/ne§e for help.");
-					return true;
+					return false;
 				}
 			} else {
 				sender.sendMessage("§e§nNametagEdit v"
@@ -195,10 +195,6 @@ class NametagCommand implements CommandExecutor {
 								.hasPermission("NametagEdit.reload")
 						|| !(sender instanceof Player)) {
 					sender.sendMessage("§a/ne reload§e - reloads the configs");
-				}
-				if (sender instanceof Player && ((Player) sender).isOp()
-						|| !(sender instanceof Player)) {
-					sender.sendMessage("§a/ne update§e - check for updates");
 				}
 			}
 		}

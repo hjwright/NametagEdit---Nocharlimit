@@ -1,12 +1,15 @@
 package ca.wacos.nametagedit;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
+
 import org.anjocaido.groupmanager.GroupManager;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -28,6 +31,12 @@ public class NametagEdit extends JavaPlugin {
 	public static GroupManager groupManager;
 	static NametagEdit plugin = null;
 	public static String permissions = "";
+	public static String name = "";
+	public static String type = "";
+	public static String version = "";
+	public static String link = "";
+
+	static Updater updater;
 
 	/**
 	 * Called when the plugin is loaded, registering command executors and event
@@ -50,6 +59,17 @@ public class NametagEdit extends JavaPlugin {
 		load();
 
 		saveDefaultConfig();
+
+		// Updater Hook ~ We love Gravity :)
+		if (getConfig().getBoolean("CheckForUpdates")) {
+			updater = new Updater(this, 54012, this.getFile(),
+					Updater.UpdateType.DEFAULT, false);
+			name = updater.getLatestName(); // Get the latest name
+			version = updater.getLatestGameVersion(); // Get the latest game
+														// version
+			type = updater.getLatestType(); // Get the latest file's type
+			link = updater.getLatestFileLink(); // Get the latest link
+		}
 
 		this.getServer().getScheduler()
 				.scheduleSyncDelayedTask(this, new Runnable() {
@@ -220,4 +240,22 @@ public class NametagEdit extends JavaPlugin {
 		return getFile();
 	}
 
+	public void runUpdate() {
+		updater = new Updater(this, 54012, this.getFile(),
+				Updater.UpdateType.DEFAULT, true);
+	}
+
+	public boolean onCommand(CommandSender sender, Command cmd, String label,
+			String[] a) {
+		Player player = (Player) sender;
+		if (cmd.getName().equalsIgnoreCase("nte")) {
+			if (a.length < 1) {
+				player.sendMessage("§aRun Update/Downloader - §e/nte update");
+			} else if (a[0].equalsIgnoreCase("update")) {
+				player.sendMessage("§aCommencing update process. Beep bop.");
+				runUpdate();
+			}
+		}
+		return false;
+	}
 }
