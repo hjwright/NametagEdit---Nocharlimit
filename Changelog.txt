@@ -1,0 +1,25 @@
+v2.1
+
+@sgtcaze
+- Deleted ConfigLoader class in favor of YAML (config.yml now instead of config.txt)
+- Added "nte" command for updating (/nte update)
+- Renamed Packet209Mod class for update clarity (and forseeable changes)
+
+======================================
+v2.0
+
+@sgtcaze
+- Fixed Diamond Operator error in project building
+- Added configurable option to disable console print
+- Replace updater with newer, Bukkit compliant updater
+
+======================================
+v1.9
+
+@sgtcaze
+- Update to 1.7.2 as Bukkit changed packet format to "PacketPlayOut"
+- Mavenized with Dependencies for Jenkins CI
+
+@sanjay900
+- Fix NPC prefixes on restart as well as NPC names not saving
+- Backwards compatibility (1.5 and 1.6)
