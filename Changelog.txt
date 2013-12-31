@@ -2,7 +2,8 @@ v2.1
 
 @sgtcaze
 - Deleted ConfigLoader class in favor of YAML (config.yml now instead of config.txt)
-- Added "nte" command for updating (/nte update)
+- Added aliases (/nte and /nametagedit)
+- Comments for different arguments in the Commands to keep track
 - Renamed Packet209Mod class for update clarity (and forseeable changes)
 
 ======================================

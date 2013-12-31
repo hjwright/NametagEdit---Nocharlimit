@@ -1,8 +1,6 @@
 package ca.wacos.nametagedit;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -240,27 +238,8 @@ public class NametagEdit extends JavaPlugin {
 		return getFile();
 	}
 
-	public void runUpdate() {
-		updater = new Updater(this, 54012, this.getFile(),
+	public static void runUpdate() {
+		updater = new Updater(plugin, 54012, plugin.getFile(),
 				Updater.UpdateType.DEFAULT, true);
-	}
-
-	public boolean onCommand(CommandSender sender, Command cmd, String label,
-			String[] a) {
-		Player player = (Player) sender;
-		if (cmd.getName().equalsIgnoreCase("nte")) {
-			if (player.hasPermission("NametagEdit.update")
-					&& checkForUpdatesEnabled) {
-				if (a.length < 1) {
-					player.sendMessage("§aRun Update/Downloader - §e/nte update");
-				} else if (a[0].equalsIgnoreCase("update")) {
-					player.sendMessage("§aCommencing update process. Beep bop.");
-					runUpdate();
-				}
-			} else {
-				player.sendMessage("§cUpdater is disabled.");
-			}
-		}
-		return false;
 	}
 }

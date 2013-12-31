@@ -46,18 +46,40 @@ class NametagCommand implements CommandExecutor {
 					return true;
 				}
 			}
-			if (args.length >= 1 && args[0].equalsIgnoreCase("reload")) {
-				if (senderPlayer != null) {
-					if (!senderPlayer.hasPermission("NametagEdit.reload")) {
-						sender.sendMessage("§cYou don't have permission to reload this plugin.");
-						return true;
-					}
-				}
-				NametagEdit.plugin.load();
-				sender.sendMessage("§eReloaded group nodes and players.");
-				return true;
+
+			// >1 Argument Command
+			if (args.length < 1) {
+				sender.sendMessage("§e§nNametagEdit v"
+						+ NametagEdit.plugin.getDescription().getVersion()
+						+ " command usage:");
+				sender.sendMessage("");
+				sender.sendMessage("§a/ne prefix [player] [text]§e - sets a player's prefix");
+				sender.sendMessage("§a/ne suffix [player] [text]§e - sets a player's suffix");
+				sender.sendMessage("§a/ne clear [player]§e - clears both a player's prefix and suffix.");
+				sender.sendMessage("§a/ne reload§e - reloads the configs");
+				sender.sendMessage("§a/ne update§e - automatically downloads and updates the plugin");
 			}
 
+			// 1 Argument Commands
+			if (args.length == 1) {
+				if (args[0].equalsIgnoreCase("reload")) {
+					if (senderPlayer != null) {
+						if (!senderPlayer.hasPermission("NametagEdit.reload")) {
+							sender.sendMessage("§cYou don't have permission to reload this plugin.");
+							return true;
+						}
+					}
+					NametagEdit.plugin.load();
+					sender.sendMessage("§eReloaded group nodes and players.");
+					return true;
+				} else if (args[0].equalsIgnoreCase("update")
+						&& NametagEdit.checkForUpdatesEnabled) {
+					sender.sendMessage("§aCommencing update process. Beep bop.");
+					NametagEdit.runUpdate();
+				}
+			}
+
+			// 2 Argument Commands
 			if (args.length >= 2) {
 				String operation = args[0];
 				String text = NametagUtils.trim(NametagUtils
@@ -181,20 +203,6 @@ class NametagCommand implements CommandExecutor {
 					sender.sendMessage("§eUnknown operation \'" + operation
 							+ "\', type §a/ne§e for help.");
 					return false;
-				}
-			} else {
-				sender.sendMessage("§e§nNametagEdit v"
-						+ NametagEdit.plugin.getDescription().getVersion()
-						+ " command usage:");
-				sender.sendMessage("");
-				sender.sendMessage("§a/ne prefix [player] [text]§e - sets a player's prefix");
-				sender.sendMessage("§a/ne suffix [player] [text]§e - sets a player's suffix");
-				sender.sendMessage("§a/ne clear [player]§e - clears both a player's prefix and suffix.");
-				if (sender instanceof Player
-						&& ((Player) sender)
-								.hasPermission("NametagEdit.reload")
-						|| !(sender instanceof Player)) {
-					sender.sendMessage("§a/ne reload§e - reloads the configs");
 				}
 			}
 		}
