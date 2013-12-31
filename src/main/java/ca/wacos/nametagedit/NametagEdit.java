@@ -5,12 +5,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
 
 import org.anjocaido.groupmanager.GroupManager;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+
+import ca.wacos.nametagedit.Metrics;
 
 /**
  * This is the main class for the NametagEdit server plugin.
@@ -69,6 +72,15 @@ public class NametagEdit extends JavaPlugin {
 			link = updater.getLatestFileLink(); // Get the latest link
 		}
 
+		if (getConfig().getBoolean("MetricsEnabled")) {
+			try {
+				Metrics metrics = new Metrics(this);
+				metrics.start();
+			} catch (IOException e) {
+				// Failed to submit the stats :-(
+			}
+		}
+
 		this.getServer().getScheduler()
 				.scheduleSyncDelayedTask(this, new Runnable() {
 
@@ -115,14 +127,15 @@ public class NametagEdit extends JavaPlugin {
 									suffix = NametagUtils.formatColors(suffix);
 								}
 								if (GroupLoader.DEBUG) {
-									System.out
-											.println("Setting prefix/suffix for "
-													+ playerName
-													+ ": "
-													+ prefix
-													+ ", "
-													+ suffix
-													+ " (user)");
+									if (NametagEdit.consolePrintEnabled) {
+										System.out
+												.println("Setting prefix/suffix for "
+														+ playerName
+														+ ": "
+														+ prefix
+														+ ", "
+														+ suffix + " (user)");
+									}
 								}
 								NametagManager.overlap(playerName, prefix,
 										suffix);

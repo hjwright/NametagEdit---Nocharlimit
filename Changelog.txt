@@ -5,6 +5,8 @@ v2.1
 - Added aliases (/nte and /nametagedit)
 - Comments for different arguments in the Commands to keep track
 - Renamed Packet209Mod class for update clarity (and forseeable changes)
+- Added Metrics for statistic collecting
+- Deleted "PluginVersion" as it was used in the previous updater
 
 ======================================
 v2.0

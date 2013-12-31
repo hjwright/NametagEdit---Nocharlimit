@@ -15,3 +15,6 @@ CheckForUpdates: false
 
 # If enabled, this plugin will not print 'Setting prefix/suffix' information in the console
 ConsolePrintEnabled: false
+
+# If enabled, this plugin will send small data MCStats.org.
+MetricsEnabled: true
