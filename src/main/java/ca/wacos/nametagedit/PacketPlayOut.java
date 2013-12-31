@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 /**
  * A small wrapper for the Packet209SetScoreboardTeam packet.
  */
-class Packet209Mod {
+class PacketPlayOut {
 
 	Object packet;
 
@@ -43,8 +43,8 @@ class Packet209Mod {
 	}
 
 	@SuppressWarnings("rawtypes")
-	Packet209Mod(String name, String prefix, String suffix, Collection players,
-			int paramInt) throws ClassNotFoundException,
+	PacketPlayOut(String name, String prefix, String suffix,
+			Collection players, int paramInt) throws ClassNotFoundException,
 			IllegalAccessException, InstantiationException,
 			NoSuchMethodException, NoSuchFieldException,
 			InvocationTargetException {
@@ -65,7 +65,7 @@ class Packet209Mod {
 	}
 
 	@SuppressWarnings("rawtypes")
-	Packet209Mod(String name, Collection players, int paramInt)
+	PacketPlayOut(String name, Collection players, int paramInt)
 			throws ClassNotFoundException, IllegalAccessException,
 			InstantiationException, NoSuchMethodException,
 			NoSuchFieldException, InvocationTargetException {

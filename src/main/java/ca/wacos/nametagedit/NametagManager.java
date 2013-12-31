@@ -383,11 +383,11 @@ class NametagManager {
 		try {
 
 			for (TeamInfo team : getTeams()) {
-				Packet209Mod mod = new Packet209Mod(team.getName(),
+				PacketPlayOut mod = new PacketPlayOut(team.getName(),
 						team.getPrefix(), team.getSuffix(),
 						new ArrayList<String>(), 0);
 				mod.sendToPlayer(p);
-				mod = new Packet209Mod(team.getName(),
+				mod = new PacketPlayOut(team.getName(),
 						Arrays.asList(getTeamPlayers(team)), 3);
 				mod.sendToPlayer(p);
 			}
@@ -409,7 +409,7 @@ class NametagManager {
 		try {
 
 			for (Player p : Bukkit.getOnlinePlayers()) {
-				Packet209Mod mod = new Packet209Mod(team.getName(),
+				PacketPlayOut mod = new PacketPlayOut(team.getName(),
 						team.getPrefix(), team.getSuffix(),
 						new ArrayList<String>(), 0);
 				mod.sendToPlayer(p);
@@ -442,7 +442,7 @@ class NametagManager {
 		try {
 
 			for (Player p : Bukkit.getOnlinePlayers()) {
-				Packet209Mod mod = new Packet209Mod(team.getName(),
+				PacketPlayOut mod = new PacketPlayOut(team.getName(),
 						team.getPrefix(), team.getSuffix(),
 						new ArrayList<String>(), 1);
 				mod.sendToPlayer(p);
@@ -477,7 +477,7 @@ class NametagManager {
 		try {
 
 			for (Player p : Bukkit.getOnlinePlayers()) {
-				Packet209Mod mod = new Packet209Mod(team.getName(),
+				PacketPlayOut mod = new PacketPlayOut(team.getName(),
 						Arrays.asList(player.getName()), 3);
 				mod.sendToPlayer(p);
 			}
@@ -503,7 +503,7 @@ class NametagManager {
 		try {
 
 			for (Player p : Bukkit.getOnlinePlayers()) {
-				Packet209Mod mod = new Packet209Mod(team.getName(),
+				PacketPlayOut mod = new PacketPlayOut(team.getName(),
 						Arrays.asList(player.getName()), 3);
 				mod.sendToPlayer(p);
 			}
@@ -542,7 +542,7 @@ class NametagManager {
 		try {
 
 			for (Player p : Bukkit.getOnlinePlayers()) {
-				Packet209Mod mod = new Packet209Mod(team.getName(),
+				PacketPlayOut mod = new PacketPlayOut(team.getName(),
 						Arrays.asList(player.getName()), 4);
 				mod.sendToPlayer(p);
 			}
@@ -573,7 +573,7 @@ class NametagManager {
 		try {
 
 			for (Player p : Bukkit.getOnlinePlayers()) {
-				Packet209Mod mod = new Packet209Mod(team.getName(),
+				PacketPlayOut mod = new PacketPlayOut(team.getName(),
 						Arrays.asList(player.getName()), 4);
 				mod.sendToPlayer(p);
 			}
