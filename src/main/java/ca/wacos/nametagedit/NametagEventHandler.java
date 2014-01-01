@@ -3,7 +3,6 @@ package ca.wacos.nametagedit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.LinkedHashMap;
@@ -95,29 +94,13 @@ class NametagEventHandler implements Listener {
 			e.getPlayer().setPlayerListName(tab);
 		}
 
-		if (e.getPlayer().getName().equals("Jarcode")) {
-			NametagAPI.setNametagHard("Jarcode", "§eThe §b", " §cSwagmaster");
-		}
-	}
-
-	/**
-	 * Called when a player dies in the server. If enabled, this plugin will
-	 * parse through the death message and remove any formatting created by the
-	 * player's nametag.
-	 * 
-	 * @param e
-	 *            the {@link org.bukkit.event.entity.PlayerDeathEvent}
-	 *            associated with this listener.
-	 */
-	@EventHandler
-	void onPlayerDeath(PlayerDeathEvent e) {
-		if (NametagEdit.deathMessageEnabled) {
-			String formattedName = NametagManager.getFormattedName(e
-					.getEntity().getName());
-			if (!formattedName.equals(e.getEntity().getName())) {
-				e.setDeathMessage(e.getDeathMessage().replace(formattedName,
-						e.getEntity().getName()));
-			}
+		if (e.getPlayer().hasPermission("NametagEdit.update")
+				&& NametagEdit.checkForUpdatesEnabled) {
+			e.getPlayer().sendMessage(
+					"§3An update is available: §c" + NametagEdit.name
+							+ "§3, a §c" + NametagEdit.type + "§3 for §c"
+							+ NametagEdit.version + "§3 available at §c"
+							+ NametagEdit.link);
 		}
 	}
 }

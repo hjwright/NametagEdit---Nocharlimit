@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
@@ -62,15 +61,21 @@ public class NametagEdit extends JavaPlugin {
 
 		saveDefaultConfig();
 
-		// Updater Hook ~ We love Gravity :)
 		if (getConfig().getBoolean("CheckForUpdates")) {
+
 			updater = new Updater(this, 54012, this.getFile(),
-					Updater.UpdateType.DEFAULT, true);
+					Updater.UpdateType.NO_DOWNLOAD, false);
 			name = updater.getLatestName(); // Get the latest name
 			version = updater.getLatestGameVersion(); // Get the latest game
 														// version
 			type = updater.getLatestType(); // Get the latest file's type
 			link = updater.getLatestFileLink(); // Get the latest link
+
+			if (Updater.UpdateResult.UPDATE_AVAILABLE != null) {
+				System.out.println("An update is available: " + name + ", a "
+						+ type + " for " + version + " available at " + link);
+				System.out.println("Update by executing: /ne update");
+			}
 		}
 
 		if (getConfig().getBoolean("MetricsEnabled")) {
@@ -161,8 +166,6 @@ public class NametagEdit extends JavaPlugin {
 
 		groups = GroupLoader.load(this);
 
-		// config = ConfigLoader.load(this);
-
 		NametagEdit.tabListEnabled = getConfig().getBoolean("TabListEnabled");
 		NametagEdit.deathMessageEnabled = getConfig().getBoolean(
 				"DeathMessageEnabled");
@@ -246,10 +249,6 @@ public class NametagEdit extends JavaPlugin {
 						}
 					}
 				});
-	}
-
-	File getPluginFile() {
-		return getFile();
 	}
 
 	public static void runUpdate() {

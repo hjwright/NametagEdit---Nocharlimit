@@ -9,6 +9,11 @@ v2.1
 - Deleted "PluginVersion" as it was used in the previous updater
 - Separated Updater and Metrics into a separate Utilities package
 - New permission: NametagEdit.update - Allows the command sender to update
+- Removed PlayerDeathEvent manipulation as it did not work
+- Removed section in config for death messages
+- Removed unused methods scattered in the plugin
+- Added when a player with the necessary permission joins, with updater enabled, they will be
+  notified of the available update.
 
 ======================================
 v2.0
