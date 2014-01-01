@@ -8,6 +8,7 @@ v2.1
 - Added Metrics for statistic collecting
 - Deleted "PluginVersion" as it was used in the previous updater
 - Separated Updater and Metrics into a separate Utilities package
+- New permission: NametagEdit.update - Allows the command sender to update
 
 ======================================
 v2.0

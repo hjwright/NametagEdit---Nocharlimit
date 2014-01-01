@@ -74,8 +74,10 @@ class NametagCommand implements CommandExecutor {
 					return true;
 				} else if (args[0].equalsIgnoreCase("update")
 						&& NametagEdit.checkForUpdatesEnabled) {
-					sender.sendMessage("§aCommencing update process. Beep bop.");
-					NametagEdit.runUpdate();
+					if (senderPlayer.hasPermission("NametagEdit.update")) {
+						sender.sendMessage("§aCommencing update process. Beep bop.");
+						NametagEdit.runUpdate();
+					}
 				}
 			}
 
