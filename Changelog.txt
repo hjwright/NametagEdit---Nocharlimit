@@ -7,6 +7,7 @@ v2.1
 - Renamed Packet209Mod class for update clarity (and forseeable changes)
 - Added Metrics for statistic collecting
 - Deleted "PluginVersion" as it was used in the previous updater
+- Separated Updater and Metrics into a separate Utilities package
 
 ======================================
 v2.0
