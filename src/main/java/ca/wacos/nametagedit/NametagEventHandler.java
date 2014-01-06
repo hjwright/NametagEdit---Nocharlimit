@@ -85,7 +85,7 @@ class NametagEventHandler implements Listener {
 				}
 			}
 		}
-		if (NametagEdit.tabListEnabled) {
+		if (NametagEdit.tabListDisabled) {
 			String str = "§f" + e.getPlayer().getName();
 			String tab = "";
 			for (int t = 0; t < str.length() && t < 16; t++) {

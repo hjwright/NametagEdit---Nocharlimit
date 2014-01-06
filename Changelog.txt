@@ -1,3 +1,9 @@
+v2.2
+
+@sgtcaze
+- Changed up config for clarity on functions
+
+======================================
 v2.1
 
 @sgtcaze

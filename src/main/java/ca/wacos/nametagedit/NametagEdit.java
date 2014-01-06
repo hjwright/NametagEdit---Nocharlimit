@@ -25,7 +25,7 @@ public class NametagEdit extends JavaPlugin {
 
 	static LinkedHashMap<String, LinkedHashMap<String, String>> groups = null;
 	static LinkedHashMap<String, LinkedHashMap<String, String>> config = null;
-	static boolean tabListEnabled = false;
+	static boolean tabListDisabled = false;
 	static boolean deathMessageEnabled = false;
 	static boolean checkForUpdatesEnabled = false;
 	static boolean consolePrintEnabled = false;
@@ -166,7 +166,7 @@ public class NametagEdit extends JavaPlugin {
 
 		groups = GroupLoader.load(this);
 
-		NametagEdit.tabListEnabled = getConfig().getBoolean("TabListEnabled");
+		NametagEdit.tabListDisabled = getConfig().getBoolean("TabListDisabled");
 		NametagEdit.deathMessageEnabled = getConfig().getBoolean(
 				"DeathMessageEnabled");
 		NametagEdit.checkForUpdatesEnabled = getConfig().getBoolean(
@@ -236,7 +236,7 @@ public class NametagEdit extends JavaPlugin {
 									}
 								}
 							}
-							if (NametagEdit.tabListEnabled) {
+							if (NametagEdit.tabListDisabled) {
 								String str = "§f" + p.getName();
 								String tab = "";
 								for (int t = 0; t < str.length() && t < 16; t++) {
