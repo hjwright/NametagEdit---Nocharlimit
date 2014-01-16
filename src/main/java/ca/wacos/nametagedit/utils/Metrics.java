@@ -1,4 +1,4 @@
-package utils;
+package ca.wacos.nametagedit.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;

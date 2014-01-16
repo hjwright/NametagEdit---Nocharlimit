@@ -12,8 +12,8 @@ import org.anjocaido.groupmanager.GroupManager;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
-import utils.Metrics;
-import utils.Updater;
+import ca.wacos.nametagedit.utils.Metrics;
+import ca.wacos.nametagedit.utils.Updater;
 
 /**
  * This is the main class for the NametagEdit server plugin.
