@@ -114,14 +114,15 @@ class PlayerLoader {
 		if (prefix != null && !prefix.isEmpty()){
 			prefix = prefix.replace("§", "&");
 			addPlayer(name, "prefix", prefix);
-			}
+		}
 		else if (player != null) {
 			if (player.get("prefix") != null)
 				addPlayer(name, "prefix", player.get("prefix"));
 		}
 		if (suffix != null && !suffix.isEmpty()){
 			suffix = suffix.replace("§", "&");
-			addPlayer(name, "suffix", suffix);}
+			addPlayer(name, "suffix", suffix);
+		}
 		else if (player != null) {
 			if (player.get("suffix") != null)
 				addPlayer(name, "suffix", player.get("suffix"));
