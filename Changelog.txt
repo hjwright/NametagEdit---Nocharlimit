@@ -4,6 +4,9 @@ v2.2
 - Changed up config for clarity on functions
 - Refractor packaging for convention
 
+@sanjay900
+- Fixed nullpointerexception on PlayerLoader
+
 ======================================
 v2.1
 
