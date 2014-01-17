@@ -35,7 +35,7 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
-                    <showWarnings>false</showWarnings>
+                    <showDeprecation>false</showDeprecation>
                 </configuration>
             </plugin>
         </plugins>
