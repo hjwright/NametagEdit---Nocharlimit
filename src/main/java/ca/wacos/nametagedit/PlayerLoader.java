@@ -108,17 +108,20 @@ class PlayerLoader {
 	 */
 	static void update(String name, String prefix, String suffix) {
 		LinkedHashMap<String, String> player = getPlayer(name);
-		prefix = prefix.replace("§", "&");
-		suffix = suffix.replace("§", "&");
+		
+		
 		removePlayer(name, null);
-		if (prefix != null && !prefix.isEmpty())
+		if (prefix != null && !prefix.isEmpty()){
+			prefix = prefix.replace("§", "&");
 			addPlayer(name, "prefix", prefix);
+			}
 		else if (player != null) {
 			if (player.get("prefix") != null)
 				addPlayer(name, "prefix", player.get("prefix"));
 		}
-		if (suffix != null && !suffix.isEmpty())
-			addPlayer(name, "suffix", suffix);
+		if (suffix != null && !suffix.isEmpty()){
+			suffix = suffix.replace("§", "&");
+			addPlayer(name, "suffix", suffix);}
 		else if (player != null) {
 			if (player.get("suffix") != null)
 				addPlayer(name, "suffix", player.get("suffix"));
