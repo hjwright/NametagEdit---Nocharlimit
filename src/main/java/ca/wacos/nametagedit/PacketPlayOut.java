@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Field;
+import org.bukkit.Bukkit;
 
 /**
  * A small wrapper for the Packet209SetScoreboardTeam packet.
@@ -19,23 +20,22 @@ class PacketPlayOut {
 	private static Method getHandle;
 	private static Method sendPacket;
 	private static Field playerConnection;
-
+        private static String version = "";
 	private static Class<?> packetType;
 
 	static {
 		try {
-
+                        version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
 			packetType = Class.forName(getPacketTeamClasspath());
 
-			Class<?> typeCraftPlayer = Class.forName(getCraftPlayerClasspath());
-			Class<?> typeNMSPlayer = Class.forName(getNMSPlayerClasspath());
-			Class<?> typePlayerConnection = Class
-					.forName(getPlayerConnectionClasspath());
+			Class<?> typeCraftPlayer = Class.forName("org.bukkit.craftbukkit." + version + ".entity.CraftPlayer");
+			Class<?> typeNMSPlayer = Class.forName("net.minecraft.server." + version + ".EntityPlayer");
+			Class<?> typePlayerConnection = Class.forName("net.minecraft.server." + version + ".PlayerConnection");
 
 			getHandle = typeCraftPlayer.getMethod("getHandle");
 			playerConnection = typeNMSPlayer.getField("playerConnection");
 			sendPacket = typePlayerConnection.getMethod("sendPacket",
-					Class.forName(getPacketClasspath()));
+					Class.forName("net.minecraft.server." + version + ".Packet"));
 		} catch (Exception e) {
 			System.out.println("Failed to setup reflection for Packet209Mod!");
 			e.printStackTrace();
@@ -112,37 +112,16 @@ class PacketPlayOut {
 		f.setAccessible(true);
 		((Collection) f.get(packet)).addAll(col);
 	}
-
-	private static String getCraftPlayerClasspath() {
-		return "org.bukkit.craftbukkit." + PackageChecker.getVersion()
-				+ ".entity.CraftPlayer";
-	}
-
-	private static String getPlayerConnectionClasspath() {
-		return "net.minecraft.server." + PackageChecker.getVersion()
-				+ ".PlayerConnection";
-	}
-
-	private static String getNMSPlayerClasspath() {
-		return "net.minecraft.server." + PackageChecker.getVersion()
-				+ ".EntityPlayer";
-	}
-
-	private static String getPacketClasspath() {
-		return "net.minecraft.server." + PackageChecker.getVersion()
-				+ ".Packet";
-	}
-
+	
 	private static String getPacketTeamClasspath() {
 		// v1_(7)_R1
-
-		if (Integer.valueOf(PackageChecker.getVersion().split("_")[1]) < 7
-				&& Integer.valueOf(PackageChecker.getVersion().toLowerCase()
+		if (Integer.valueOf(version.split("_")[1]) < 7
+				&& Integer.valueOf(version.toLowerCase()
 						.split("_")[0].replace("v", "")) == 1) {
-			return "net.minecraft.server." + PackageChecker.getVersion()
+			return "net.minecraft.server." + version
 					+ ".Packet209SetScoreboardTeam";
 		} else {
-			return "net.minecraft.server." + PackageChecker.getVersion()
+			return "net.minecraft.server." + version
 					+ ".PacketPlayOutScoreboardTeam";
 		}
 	}
