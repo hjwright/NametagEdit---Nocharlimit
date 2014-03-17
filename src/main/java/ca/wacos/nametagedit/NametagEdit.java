@@ -2,6 +2,8 @@ package ca.wacos.nametagedit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -213,7 +215,8 @@ public class NametagEdit extends JavaPlugin {
 							if (setGroup) {
 								for (String key : groups.keySet().toArray(
 										new String[groups.keySet().size()])) {
-									if (p.hasPermission(key)) {
+									Permission p2 = new Permission(key, PermissionDefault.FALSE);
+									if (p.hasPermission(p2)) {
 										String prefix = groups.get(key).get(
 												"prefix");
 										String suffix = groups.get(key).get(
@@ -226,13 +229,13 @@ public class NametagEdit extends JavaPlugin {
 											suffix = NametagUtils
 													.formatColors(suffix);
 										}
-										NametagCommand.setNametagHard(
+										NametagCommand.setNametagSoft(
 												p.getName(),
 												prefix,
 												suffix,
 												NametagChangeEvent.NametagChangeReason.GROUP_NODE);
 
-										break;
+										
 									}
 								}
 							}

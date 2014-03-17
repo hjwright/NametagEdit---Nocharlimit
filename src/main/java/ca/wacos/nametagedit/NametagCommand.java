@@ -5,6 +5,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionDefault;
 
 import java.util.ArrayList;
 
@@ -180,7 +182,8 @@ class NametagCommand implements CommandExecutor {
 					if (targetPlayer != null) {
 						for (String key : NametagEdit.groups.keySet().toArray(
 								new String[NametagEdit.groups.keySet().size()])) {
-							if (targetPlayer.hasPermission(key)) {
+							Permission p = new Permission(key, PermissionDefault.FALSE);
+							if (targetPlayer.hasPermission(p)) {
 								String prefix = NametagEdit.groups.get(key)
 										.get("prefix");
 								String suffix = NametagEdit.groups.get(key)
@@ -191,13 +194,13 @@ class NametagCommand implements CommandExecutor {
 								if (suffix != null) {
 									suffix = NametagUtils.formatColors(suffix);
 								}
-								setNametagHard(
+								setNametagSoft(
 										targetPlayer.getName(),
 										prefix,
 										suffix,
 										NametagChangeEvent.NametagChangeReason.GROUP_NODE);
 
-								break;
+								
 							}
 						}
 					}

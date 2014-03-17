@@ -35,10 +35,10 @@ class NametagManager {
 			list.add(player);
 			Player p = Bukkit.getPlayerExact(player);
 			if (p != null) {
-				sendPacketsAddToTeam(team, p);
+				sendPacketsAddToTeam(team, p.getName());
 			} else {
 				OfflinePlayer p2 = Bukkit.getOfflinePlayer(player);
-				sendPacketsAddToTeam(team, p2);
+				sendPacketsAddToTeam(team, p2.getName());
 			}
 		}
 	}
@@ -66,10 +66,10 @@ class NametagManager {
 			for (String p : list.toArray(new String[list.size()])) {
 				Player player = Bukkit.getPlayerExact(p);
 				if (player != null) {
-					sendPacketsRemoveFromTeam(team, player);
+					sendPacketsRemoveFromTeam(team, player.getName());
 				} else {
 					OfflinePlayer p2 = Bukkit.getOfflinePlayer(p);
-					sendPacketsRemoveFromTeam(team, p2);
+					sendPacketsRemoveFromTeam(team, p2.getName());
 				}
 			}
 			sendPacketsRemoveTeam(team);
@@ -86,10 +86,10 @@ class NametagManager {
 				if (p.equals(player)) {
 					Player pl = Bukkit.getPlayerExact(player);
 					if (pl != null) {
-						sendPacketsRemoveFromTeam(team, pl);
+						sendPacketsRemoveFromTeam(team, pl.getName());
 					} else {
 						OfflinePlayer p2 = Bukkit.getOfflinePlayer(p);
-						sendPacketsRemoveFromTeam(team, p2);
+						sendPacketsRemoveFromTeam(team, p2.getName());
 					}
 					list.remove(p);
 
@@ -442,6 +442,7 @@ class NametagManager {
 		try {
 
 			for (Player p : Bukkit.getOnlinePlayers()) {
+
 				PacketPlayOut mod = new PacketPlayOut(team.getName(),
 						team.getPrefix(), team.getSuffix(),
 						new ArrayList<String>(), 1);
@@ -462,7 +463,7 @@ class NametagManager {
 	 * @param player
 	 *            the player to add
 	 */
-	private static void sendPacketsAddToTeam(TeamInfo team, Player player) {
+	private static void sendPacketsAddToTeam(TeamInfo team, String player) {
 
 		boolean cont = false;
 		for (TeamInfo t : getTeams()) {
@@ -478,33 +479,7 @@ class NametagManager {
 
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				PacketPlayOut mod = new PacketPlayOut(team.getName(),
-						Arrays.asList(player.getName()), 3);
-				mod.sendToPlayer(p);
-			}
-		} catch (Exception e) {
-			System.out
-					.println("Failed to send packet for player (Packet209SetScoreboardTeam) : ");
-			e.printStackTrace();
-		}
-	}
-
-	private static void sendPacketsAddToTeam(TeamInfo team, OfflinePlayer player) {
-
-		boolean cont = false;
-		for (TeamInfo t : getTeams()) {
-			if (t == team) {
-				cont = true;
-			}
-		}
-		if (!cont) {
-			return;
-		}
-
-		try {
-
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				PacketPlayOut mod = new PacketPlayOut(team.getName(),
-						Arrays.asList(player.getName()), 3);
+						Arrays.asList(player), 3);
 				mod.sendToPlayer(p);
 			}
 		} catch (Exception e) {
@@ -523,44 +498,14 @@ class NametagManager {
 	 * @param player
 	 *            the player to remove
 	 */
-	private static void sendPacketsRemoveFromTeam(TeamInfo team, Player player) {
-
-		boolean cont = false;
-		for (TeamInfo t : getTeams()) {
-			if (t == team) {
-				for (String p : getTeamPlayers(t)) {
-					if (p.equals(player.getName())) {
-						cont = true;
-					}
-				}
-			}
-		}
-		if (!cont) {
-			return;
-		}
-
-		try {
-
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				PacketPlayOut mod = new PacketPlayOut(team.getName(),
-						Arrays.asList(player.getName()), 4);
-				mod.sendToPlayer(p);
-			}
-		} catch (Exception e) {
-			System.out
-					.println("Failed to send packet for player (Packet209SetScoreboardTeam) : ");
-			e.printStackTrace();
-		}
-	}
-
 	private static void sendPacketsRemoveFromTeam(TeamInfo team,
-			OfflinePlayer player) {
+			String player) {
 
 		boolean cont = false;
 		for (TeamInfo t : getTeams()) {
 			if (t == team) {
 				for (String p : getTeamPlayers(t)) {
-					if (p.equals(player.getName())) {
+					if (p.equals(player)) {
 						cont = true;
 					}
 				}
@@ -574,8 +519,10 @@ class NametagManager {
 
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				PacketPlayOut mod = new PacketPlayOut(team.getName(),
-						Arrays.asList(player.getName()), 4);
+						Arrays.asList(player), 4);
+
 				mod.sendToPlayer(p);
+
 			}
 		} catch (Exception e) {
 			System.out
