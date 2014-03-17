@@ -4,6 +4,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionDefault;
 
 import java.util.LinkedHashMap;
 
@@ -61,7 +63,8 @@ class NametagEventHandler implements Listener {
 		if (setGroup) {
 			for (String key : NametagEdit.groups.keySet().toArray(
 					new String[NametagEdit.groups.keySet().size()])) {
-				if (e.getPlayer().hasPermission(key)) {
+				Permission p = new Permission(key, PermissionDefault.FALSE);
+				if (e.getPlayer().hasPermission(p)) {
 					String prefix = NametagEdit.groups.get(key).get("prefix");
 					String suffix = NametagEdit.groups.get(key).get("suffix");
 					if (prefix != null) {
@@ -77,11 +80,11 @@ class NametagEventHandler implements Listener {
 									+ ", " + suffix + " (node)");
 						}
 					}
-					NametagCommand.setNametagHard(e.getPlayer().getName(),
+					NametagCommand.setNametagSoft(e.getPlayer().getName(),
 							prefix, suffix,
 							NametagChangeEvent.NametagChangeReason.GROUP_NODE);
 
-					break;
+					
 				}
 			}
 		}
