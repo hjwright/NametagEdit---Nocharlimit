@@ -34,12 +34,12 @@ public class NametagAPI {
 					public void run() {
 						NametagChangeEvent e = new NametagChangeEvent(player,
 								getPrefix(player), getSuffix(player), prefix,
-								null, NametagChangeType.SOFT,
+								"", NametagChangeType.SOFT,
 								NametagChangeReason.CUSTOM);
 						Bukkit.getServer().getPluginManager().callEvent(e);
 						if (!e.isCancelled()) {
-							NametagManager.update(player, prefix, null);
-							PlayerLoader.update(player, prefix, null);
+							NametagManager.update(player, prefix, "");
+							PlayerLoader.update(player, prefix, "");
 						}
 					}
 				});
@@ -60,13 +60,13 @@ public class NametagAPI {
 				.scheduleSyncDelayedTask(NametagEdit.plugin, new Runnable() {
 					public void run() {
 						NametagChangeEvent e = new NametagChangeEvent(player,
-								getPrefix(player), getSuffix(player), null,
+								getPrefix(player), getSuffix(player), "",
 								suffix, NametagChangeType.SOFT,
 								NametagChangeReason.CUSTOM);
 						Bukkit.getServer().getPluginManager().callEvent(e);
 						if (!e.isCancelled()) {
-							NametagManager.update(player, null, suffix);
-							PlayerLoader.update(player, null, suffix);
+							NametagManager.update(player, "", suffix);
+							PlayerLoader.update(player, "", suffix);
 						}
 					}
 				});
