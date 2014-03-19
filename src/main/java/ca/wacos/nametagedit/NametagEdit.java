@@ -157,7 +157,11 @@ public class NametagEdit extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		NametagManager.reset();
+	}
 
+	public static void runUpdate() {
+		updater = new Updater(plugin, 54012, plugin.getFile(),
+				Updater.UpdateType.DEFAULT, true);
 	}
 
 	/**
@@ -215,7 +219,8 @@ public class NametagEdit extends JavaPlugin {
 							if (setGroup) {
 								for (String key : groups.keySet().toArray(
 										new String[groups.keySet().size()])) {
-									Permission p2 = new Permission(key, PermissionDefault.FALSE);
+									Permission p2 = new Permission(key,
+											PermissionDefault.FALSE);
 									if (p.hasPermission(p2)) {
 										String prefix = groups.get(key).get(
 												"prefix");
@@ -235,7 +240,6 @@ public class NametagEdit extends JavaPlugin {
 												suffix,
 												NametagChangeEvent.NametagChangeReason.GROUP_NODE);
 
-										
 									}
 								}
 							}
@@ -252,10 +256,5 @@ public class NametagEdit extends JavaPlugin {
 						}
 					}
 				});
-	}
-
-	public static void runUpdate() {
-		updater = new Updater(plugin, 54012, plugin.getFile(),
-				Updater.UpdateType.DEFAULT, true);
 	}
 }

@@ -1,5 +1,6 @@
 package ca.wacos.nametagedit;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -32,9 +33,11 @@ class NametagEventHandler implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	void onPlayerJoin(final PlayerJoinEvent e) {
 
-		NametagManager.sendTeamsToPlayer(e.getPlayer());
+		Player p = e.getPlayer();
 
-		NametagManager.clear(e.getPlayer().getName());
+		NametagManager.sendTeamsToPlayer(p);
+
+		NametagManager.clear(p.getName());
 
 		boolean setGroup = true;
 
@@ -52,8 +55,8 @@ class NametagEventHandler implements Listener {
 			if (GroupLoader.DEBUG) {
 				if (NametagEdit.consolePrintEnabled) {
 					System.out.println("Setting prefix/suffix for "
-							+ e.getPlayer().getName() + ": " + prefix + ", "
-							+ suffix + " (user)");
+							+ p.getName() + ": " + prefix + ", " + suffix
+							+ " (user)");
 				}
 			}
 			NametagManager.overlap(e.getPlayer().getName(), prefix, suffix);
@@ -63,8 +66,8 @@ class NametagEventHandler implements Listener {
 		if (setGroup) {
 			for (String key : NametagEdit.groups.keySet().toArray(
 					new String[NametagEdit.groups.keySet().size()])) {
-				Permission p = new Permission(key, PermissionDefault.FALSE);
-				if (e.getPlayer().hasPermission(p)) {
+				Permission pe = new Permission(key, PermissionDefault.FALSE);
+				if (p.hasPermission(pe)) {
 					String prefix = NametagEdit.groups.get(key).get("prefix");
 					String suffix = NametagEdit.groups.get(key).get("suffix");
 					if (prefix != null) {
@@ -76,15 +79,13 @@ class NametagEventHandler implements Listener {
 					if (GroupLoader.DEBUG) {
 						if (NametagEdit.consolePrintEnabled) {
 							System.out.println("Setting prefix/suffix for "
-									+ e.getPlayer().getName() + ": " + prefix
-									+ ", " + suffix + " (node)");
+									+ p.getName() + ": " + prefix + ", "
+									+ suffix + " (node)");
 						}
 					}
-					NametagCommand.setNametagSoft(e.getPlayer().getName(),
-							prefix, suffix,
+					NametagCommand.setNametagSoft(p.getName(), prefix, suffix,
 							NametagChangeEvent.NametagChangeReason.GROUP_NODE);
 
-					
 				}
 			}
 		}
@@ -94,16 +95,15 @@ class NametagEventHandler implements Listener {
 			for (int t = 0; t < str.length() && t < 16; t++) {
 				tab += str.charAt(t);
 			}
-			e.getPlayer().setPlayerListName(tab);
+			p.setPlayerListName(tab);
 		}
 
-		if (e.getPlayer().hasPermission("NametagEdit.update")
+		if (p.hasPermission("NametagEdit.update")
 				&& NametagEdit.checkForUpdatesEnabled) {
-			e.getPlayer().sendMessage(
-					"§3An update is available: §c" + NametagEdit.name
-							+ "§3, a §c" + NametagEdit.type + "§3 for §c"
-							+ NametagEdit.version + "§3 available at §c"
-							+ NametagEdit.link);
+			p.sendMessage("§3An update is available: §c" + NametagEdit.name
+					+ "§3, a §c" + NametagEdit.type + "§3 for §c"
+					+ NametagEdit.version + "§3 available at §c"
+					+ NametagEdit.link);
 		}
 	}
 }

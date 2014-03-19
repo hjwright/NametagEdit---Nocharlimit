@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 import org.bukkit.Bukkit;
 
 /**
- * A small wrapper for the Packet209SetScoreboardTeam packet.
+ * A small wrapper for the PacketPlayOutScoreboardTeam packet.
  */
 class PacketPlayOut {
 
@@ -20,22 +20,28 @@ class PacketPlayOut {
 	private static Method getHandle;
 	private static Method sendPacket;
 	private static Field playerConnection;
-        private static String version = "";
+	private static String version = "";
 	private static Class<?> packetType;
 
 	static {
 		try {
-                        version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+
+			version = Bukkit.getServer().getClass().getPackage().getName()
+					.split("\\.")[3];
 			packetType = Class.forName(getPacketTeamClasspath());
 
-			Class<?> typeCraftPlayer = Class.forName("org.bukkit.craftbukkit." + version + ".entity.CraftPlayer");
-			Class<?> typeNMSPlayer = Class.forName("net.minecraft.server." + version + ".EntityPlayer");
-			Class<?> typePlayerConnection = Class.forName("net.minecraft.server." + version + ".PlayerConnection");
+			Class<?> typeCraftPlayer = Class.forName("org.bukkit.craftbukkit."
+					+ version + ".entity.CraftPlayer");
+			Class<?> typeNMSPlayer = Class.forName("net.minecraft.server."
+					+ version + ".EntityPlayer");
+			Class<?> typePlayerConnection = Class
+					.forName("net.minecraft.server." + version
+							+ ".PlayerConnection");
 
 			getHandle = typeCraftPlayer.getMethod("getHandle");
 			playerConnection = typeNMSPlayer.getField("playerConnection");
-			sendPacket = typePlayerConnection.getMethod("sendPacket",
-					Class.forName("net.minecraft.server." + version + ".Packet"));
+			sendPacket = typePlayerConnection.getMethod("sendPacket", Class
+					.forName("net.minecraft.server." + version + ".Packet"));
 		} catch (Exception e) {
 			System.out.println("Failed to setup reflection for Packet209Mod!");
 			e.printStackTrace();
@@ -112,12 +118,12 @@ class PacketPlayOut {
 		f.setAccessible(true);
 		((Collection) f.get(packet)).addAll(col);
 	}
-	
+
 	private static String getPacketTeamClasspath() {
 		// v1_(7)_R1
 		if (Integer.valueOf(version.split("_")[1]) < 7
-				&& Integer.valueOf(version.toLowerCase()
-						.split("_")[0].replace("v", "")) == 1) {
+				&& Integer.valueOf(version.toLowerCase().split("_")[0].replace(
+						"v", "")) == 1) {
 			return "net.minecraft.server." + version
 					+ ".Packet209SetScoreboardTeam";
 		} else {

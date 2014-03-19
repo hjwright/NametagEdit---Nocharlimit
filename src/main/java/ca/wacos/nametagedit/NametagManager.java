@@ -75,7 +75,6 @@ class NametagManager {
 			sendPacketsRemoveTeam(team);
 			teams.remove(team);
 		}
-
 	}
 
 	private static TeamInfo removeFromTeam(String player) {
@@ -207,7 +206,6 @@ class NametagManager {
 		TeamInfo t = get(prefix, suffix);
 
 		addToTeam(t, player);
-
 	}
 
 	/**
@@ -219,7 +217,6 @@ class NametagManager {
 	static void clear(String player) {
 
 		removeFromTeam(player);
-
 	}
 
 	/**
@@ -326,7 +323,6 @@ class NametagManager {
 		}
 
 		return declareTeam(TEAM_NAME_PREFIX + nextName(), prefix, suffix);
-
 	}
 
 	/**
@@ -498,8 +494,7 @@ class NametagManager {
 	 * @param player
 	 *            the player to remove
 	 */
-	private static void sendPacketsRemoveFromTeam(TeamInfo team,
-			String player) {
+	private static void sendPacketsRemoveFromTeam(TeamInfo team, String player) {
 
 		boolean cont = false;
 		for (TeamInfo t : getTeams()) {

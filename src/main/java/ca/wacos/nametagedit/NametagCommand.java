@@ -8,8 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 
-import java.util.ArrayList;
-
 /**
  * This class is responsible for handling the /ne command.
  * 
@@ -17,9 +15,6 @@ import java.util.ArrayList;
  * 
  */
 class NametagCommand implements CommandExecutor {
-
-	@SuppressWarnings("unused")
-	private ArrayList<String> updateTasks = new ArrayList<String>();
 
 	/**
 	 * onCommand method for the plugin.
@@ -182,7 +177,8 @@ class NametagCommand implements CommandExecutor {
 					if (targetPlayer != null) {
 						for (String key : NametagEdit.groups.keySet().toArray(
 								new String[NametagEdit.groups.keySet().size()])) {
-							Permission p = new Permission(key, PermissionDefault.FALSE);
+							Permission p = new Permission(key,
+									PermissionDefault.FALSE);
 							if (targetPlayer.hasPermission(p)) {
 								String prefix = NametagEdit.groups.get(key)
 										.get("prefix");
@@ -200,7 +196,6 @@ class NametagCommand implements CommandExecutor {
 										suffix,
 										NametagChangeEvent.NametagChangeReason.GROUP_NODE);
 
-								
 							}
 						}
 					}
