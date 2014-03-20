@@ -60,18 +60,6 @@ class NametagManager {
 	}
 
 	private static void removeTeam(TeamInfo team) {
-
-		List<String> list = teams.get(team);
-		if (list != null) {
-			for (String p : list.toArray(new String[list.size()])) {
-				Player player = Bukkit.getPlayerExact(p);
-				if (player != null) {
-					sendPacketsRemoveFromTeam(team, player.getName());
-				} else {
-					OfflinePlayer p2 = Bukkit.getOfflinePlayer(p);
-					sendPacketsRemoveFromTeam(team, p2.getName());
-				}
-			}
 			sendPacketsRemoveTeam(team);
 			teams.remove(team);
 		}
