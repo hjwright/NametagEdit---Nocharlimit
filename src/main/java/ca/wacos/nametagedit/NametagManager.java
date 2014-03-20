@@ -60,9 +60,8 @@ class NametagManager {
 	}
 
 	private static void removeTeam(TeamInfo team) {
-			sendPacketsRemoveTeam(team);
-			teams.remove(team);
-		}
+		sendPacketsRemoveTeam(team);
+		teams.remove(team);
 	}
 
 	private static TeamInfo removeFromTeam(String player) {
