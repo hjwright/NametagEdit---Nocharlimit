@@ -1,5 +1,6 @@
 package ca.wacos.nametagedit;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -33,16 +34,19 @@ class NametagEventHandler implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	void onPlayerJoin(final PlayerJoinEvent e) {
 
-		Player p = e.getPlayer();
+		final Player p = e.getPlayer();
 
 		NametagManager.sendTeamsToPlayer(p);
 
 		NametagManager.clear(p.getName());
 
-		boolean setGroup = true;
-
-		LinkedHashMap<String, String> playerData = PlayerLoader.getPlayer(p
-				.getName());
+		
+		Bukkit.getServer().getScheduler()
+		.scheduleSyncDelayedTask(NametagEdit.plugin, new Runnable() {
+			@Override
+			public void run() {
+				boolean setGroup = true;
+		LinkedHashMap<String, String> playerData = PlayerLoader.getPlayer((p.getUniqueId().toString()));
 		if (playerData != null) {
 			String prefix = playerData.get("prefix");
 			String suffix = playerData.get("suffix");
@@ -105,5 +109,7 @@ class NametagEventHandler implements Listener {
 					+ NametagEdit.version + "§3 available at §c"
 					+ NametagEdit.link);
 		}
+	}
+		},1L);
 	}
 }

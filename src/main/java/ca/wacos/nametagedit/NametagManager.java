@@ -218,7 +218,6 @@ class NametagManager {
 	static String getPrefix(String player) {
 		for (TeamInfo team : getTeams()) {
 			for (String p : getTeamPlayers(team)) {
-
 				if (p.equals(player)) {
 					return team.getPrefix();
 				}

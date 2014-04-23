@@ -110,7 +110,6 @@ class PlayerLoader {
 	 */
 	static void update(String name, String prefix, String suffix) {
 		LinkedHashMap<String, String> player = getPlayer(name);
-
 		removePlayer(name, null);
 		if (prefix != null && !prefix.isEmpty()) {
 			prefix = prefix.replace("§", "&");
@@ -212,6 +211,7 @@ class PlayerLoader {
 	 */
 	static LinkedHashMap<String, String> getPlayer(String name) {
 		LinkedHashMap<String, LinkedHashMap<String, String>> playerMap = loadConfig();
+		
 		for (String key : playerMap.keySet().toArray(
 				new String[playerMap.keySet().size()])) {
 			if (key.equals(name)) {
@@ -312,12 +312,7 @@ class PlayerLoader {
 
 				String name = null;
 
-				if (Bukkit.getOfflinePlayer(UUID.fromString(node)).getName() != null) {
-					name = Bukkit.getOfflinePlayer(UUID.fromString(node))
-							.getName();
-				} else {
-					name = "na";
-				}
+				name = UUID.fromString(node).toString();
 
 				if (map.get(name) == null) {
 					map.put(name, entry);
