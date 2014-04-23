@@ -310,8 +310,14 @@ class PlayerLoader {
 
 				entry.put(operation.toLowerCase(), value);
 
-				String name = Bukkit.getOfflinePlayer(UUID.fromString(node))
-						.getName();
+				String name = null;
+
+				if (Bukkit.getOfflinePlayer(UUID.fromString(node)).getName() != null) {
+					name = Bukkit.getOfflinePlayer(UUID.fromString(node))
+							.getName();
+				} else {
+					name = "na";
+				}
 
 				if (map.get(name) == null) {
 					map.put(name, entry);
