@@ -29,6 +29,7 @@ class NametagCommand implements CommandExecutor {
 	 *            an array of {@link String} objects for the command arguments
 	 * @see {@link org.bukkit.command.CommandExecutor}
 	 */
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		Player senderPlayer = null;
@@ -138,8 +139,8 @@ class NametagCommand implements CommandExecutor {
 					setNametagSoft(target, prefix, suffix, reason);
 
 					if (targetPlayer != null) {
-						PlayerLoader.update(targetPlayer.getName(), prefix,
-								suffix);
+						PlayerLoader.update(targetPlayer.getUniqueId()
+								.toString(), prefix, suffix);
 					} else {
 						PlayerLoader.update(target, prefix, suffix);
 					}
@@ -169,7 +170,8 @@ class NametagCommand implements CommandExecutor {
 						NametagManager.clear(target);
 					}
 					if (targetPlayer != null) {
-						PlayerLoader.removePlayer(targetPlayer.getName(), null);
+						PlayerLoader.removePlayer(targetPlayer.getUniqueId()
+								.toString(), null);
 					} else {
 						PlayerLoader.removePlayer(target, null);
 					}

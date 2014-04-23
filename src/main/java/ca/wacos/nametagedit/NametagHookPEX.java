@@ -12,14 +12,13 @@ public class NametagHookPEX implements Listener {
 	void onPermissionChangePEX(PermissionEntityEvent e) {
 		if (e.getEntity() instanceof PermissionGroup) {
 			PermissionGroup permGroup = (PermissionGroup) e.getEntity();
-			for (PermissionUser u: permGroup.getUsers()) {
+			for (PermissionUser u : permGroup.getUsers()) {
 				String name = u.getName();
 				if (!NametagAPI.hasCustomNametag(name)) {
 					NametagAPI.resetNametag(name);
-				}	
+				}
 			}
-		} else
-		if (e.getEntity() != null) {
+		} else if (e.getEntity() != null) {
 			String name = e.getEntity().getName();
 			if (!NametagAPI.hasCustomNametag(name)) {
 				NametagAPI.resetNametag(name);

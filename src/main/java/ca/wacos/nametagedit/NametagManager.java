@@ -28,6 +28,7 @@ class NametagManager {
 
 	private static HashMap<TeamInfo, List<String>> teams = new HashMap<>();
 
+	@SuppressWarnings("deprecation")
 	private static void addToTeam(TeamInfo team, String player) {
 		removeFromTeam(player);
 		List<String> list = teams.get(team);
@@ -64,6 +65,7 @@ class NametagManager {
 		teams.remove(team);
 	}
 
+	@SuppressWarnings("deprecation")
 	private static TeamInfo removeFromTeam(String player) {
 
 		for (TeamInfo team : teams.keySet().toArray(new TeamInfo[teams.size()])) {

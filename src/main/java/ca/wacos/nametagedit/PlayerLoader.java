@@ -1,5 +1,6 @@
 package ca.wacos.nametagedit;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * This class is responsible for loading player information from
@@ -307,8 +309,11 @@ class PlayerLoader {
 
 				entry.put(operation.toLowerCase(), value);
 
-				if (map.get(node) == null) {
-					map.put(node, entry);
+				String name = Bukkit.getOfflinePlayer(UUID.fromString(node))
+						.getName();
+
+				if (map.get(name) == null) {
+					map.put(name, entry);
 				}
 				lineScanner.close();
 			}

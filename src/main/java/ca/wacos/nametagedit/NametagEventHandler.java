@@ -41,8 +41,8 @@ class NametagEventHandler implements Listener {
 
 		boolean setGroup = true;
 
-		LinkedHashMap<String, String> playerData = PlayerLoader.getPlayer(e
-				.getPlayer().getName());
+		LinkedHashMap<String, String> playerData = PlayerLoader.getPlayer(p
+				.getName());
 		if (playerData != null) {
 			String prefix = playerData.get("prefix");
 			String suffix = playerData.get("suffix");
@@ -54,12 +54,12 @@ class NametagEventHandler implements Listener {
 			}
 			if (GroupLoader.DEBUG) {
 				if (NametagEdit.consolePrintEnabled) {
-					System.out.println("Setting prefix/suffix for "
+					System.out.println("> Setting prefix/suffix for "
 							+ p.getName() + ": " + prefix + ", " + suffix
 							+ " (user)");
 				}
 			}
-			NametagManager.overlap(e.getPlayer().getName(), prefix, suffix);
+			NametagManager.overlap(p.getName(), prefix, suffix);
 			setGroup = false;
 		}
 

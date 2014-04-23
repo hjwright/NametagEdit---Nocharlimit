@@ -3,10 +3,13 @@ package ca.wacos.nametagedit;
 import ca.wacos.nametagedit.NametagChangeEvent.NametagChangeReason;
 import ca.wacos.nametagedit.NametagChangeEvent.NametagChangeType;
 import static ca.wacos.nametagedit.NametagEdit.permissions;
+
 import org.bukkit.Bukkit;
 
 import java.util.LinkedHashMap;
+
 import org.bukkit.entity.Player;
+
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 /**
@@ -218,6 +221,7 @@ public class NametagAPI {
 	public static void resetNametag(final String player) {
 		NametagEdit.plugin.getServer().getScheduler()
 				.scheduleSyncDelayedTask(NametagEdit.plugin, new Runnable() {
+					@SuppressWarnings("deprecation")
 					public void run() {
 
 						NametagManager.clear(player);
