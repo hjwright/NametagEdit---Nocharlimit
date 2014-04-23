@@ -1,0 +1,3 @@
+Known Bugs:
+- If a player is not in the "playerdata" folder, and is in the players.txt, the plugin will not function properly
+- Incompatibility with plugins that alter scoreboards/displaynames frequently

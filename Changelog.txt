@@ -1,3 +1,18 @@
+v2.5.2
+
+@sgtcaze
+- Updated dependencies
+- Add BETA UUID support for players
+- Change default players.txt for update clarity
+======================================
+v2.3
+
+@dmhacker 
+- Fixed NPE being thrown due to null parameters within the API
+
+@sanjay900
+- Fixed client crashes on PermissionsEX group compatibility 
+======================================
 v2.2
 
 @sgtcaze
