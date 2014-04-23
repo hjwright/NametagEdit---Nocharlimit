@@ -244,8 +244,9 @@ class PlayerLoader {
 		}
 
 		out.println("// This file declares any user specific prefixes and suffixes set with the /ne command.");
-		out.println("Notch prefix = \"&b< &a\"");
-		out.println("Notch suffix = \" &b>\"");
+		out.println("// Everything here MUST be a UUID, or it will throw a NPE");
+		out.println("b5ccebaa-0623-4370-af73-0ec985dfa3b0 prefix = \"&b< &a\"");
+		out.println("b5ccebaa-0623-4370-af73-0ec985dfa3b0 suffix = \" &b>\"");
 
 		out.close();
 
