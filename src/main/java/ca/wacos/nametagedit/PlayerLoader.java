@@ -1,8 +1,5 @@
 package ca.wacos.nametagedit;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,6 +8,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.UUID;
+
+import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * This class is responsible for loading player information from
@@ -211,7 +210,7 @@ class PlayerLoader {
 	 */
 	static LinkedHashMap<String, String> getPlayer(String name) {
 		LinkedHashMap<String, LinkedHashMap<String, String>> playerMap = loadConfig();
-		
+
 		for (String key : playerMap.keySet().toArray(
 				new String[playerMap.keySet().size()])) {
 			if (key.equals(name)) {

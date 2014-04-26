@@ -1,11 +1,5 @@
 package ca.wacos.nametagedit;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permission;
-import org.bukkit.permissions.PermissionDefault;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -14,12 +8,16 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.anjocaido.groupmanager.GroupManager;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import ca.wacos.nametagedit.utils.Metrics;
 import ca.wacos.nametagedit.utils.NameFetcher;
-import ca.wacos.nametagedit.utils.UUIDFetcher;
 import ca.wacos.nametagedit.utils.Updater;
 
 /**
@@ -150,19 +148,24 @@ public class NametagEdit extends JavaPlugin {
 														+ suffix + " (user)");
 									}
 								}
-								NameFetcher fetcher = new NameFetcher(Arrays.asList(UUID.fromString(playerName)));
+								NameFetcher fetcher = new NameFetcher(Arrays
+										.asList(UUID.fromString(playerName)));
 								Map<UUID, String> response = null;
 								try {
-								response = fetcher.call();
-								NametagManager.overlap(response.get(UUID.fromString(playerName)).toString(), prefix,
-										suffix);
+									response = fetcher.call();
+									NametagManager.overlap(
+											response.get(
+													UUID.fromString(playerName))
+													.toString(), prefix, suffix);
 								} catch (Exception e) {
-									
-								Bukkit.getLogger().warning("Unable to set nametag for UUID " + UUID.fromString(playerName));
-								Bukkit.getLogger().warning(e.getMessage());
-								e.printStackTrace();
+
+									Bukkit.getLogger()
+											.warning(
+													"Unable to set nametag for UUID "
+															+ UUID.fromString(playerName));
+									Bukkit.getLogger().warning(e.getMessage());
+									e.printStackTrace();
 								}
-								
 
 							}
 						}
@@ -214,9 +217,11 @@ public class NametagEdit extends JavaPlugin {
 									new String[players.keySet().size()])) {
 								if (p.getUniqueId().toString().equals(key)) {
 
-									String prefix = players.get(p.getUniqueId().toString()).get(
+									String prefix = players.get(
+											p.getUniqueId().toString()).get(
 											"prefix");
-									String suffix = players.get(p.getUniqueId().toString()).get(
+									String suffix = players.get(
+											p.getUniqueId().toString()).get(
 											"suffix");
 									if (prefix != null) {
 										prefix = NametagUtils

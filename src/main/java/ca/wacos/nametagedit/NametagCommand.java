@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,7 +13,6 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 
 import ca.wacos.nametagedit.utils.UUIDFetcher;
-
 
 /**
  * This class is responsible for handling the /ne command.
@@ -121,8 +119,6 @@ class NametagCommand implements CommandExecutor {
 						return true;
 					}
 
-					
-
 					String prefix = "";
 					String suffix = "";
 					NametagChangeEvent.NametagChangeReason reason = null;
@@ -140,16 +136,19 @@ class NametagCommand implements CommandExecutor {
 						PlayerLoader.update(targetPlayer.getUniqueId()
 								.toString(), prefix, suffix);
 					} else {
-						UUIDFetcher fetcher = new UUIDFetcher(Arrays.asList(target));
+						UUIDFetcher fetcher = new UUIDFetcher(
+								Arrays.asList(target));
 						Map<String, UUID> response = null;
 						try {
-						response = fetcher.call();
-						PlayerLoader.update(response.get(target).toString(), prefix, suffix);
+							response = fetcher.call();
+							PlayerLoader.update(
+									response.get(target).toString(), prefix,
+									suffix);
 						} catch (Exception e) {
-						sender.sendMessage("We were unable to reset this player ssuffix.");
-						e.printStackTrace();
+							sender.sendMessage("We were unable to reset this player ssuffix.");
+							e.printStackTrace();
 						}
-						
+
 					}
 					if (targetPlayer != null) {
 						sender.sendMessage("§eSet " + targetPlayer.getName()
@@ -174,24 +173,25 @@ class NametagCommand implements CommandExecutor {
 					if (targetPlayer != null) {
 						NametagManager.clear(targetPlayer.getName());
 					} else {
-						
+
 						NametagManager.clear(target);
 					}
 					if (targetPlayer != null) {
 						PlayerLoader.removePlayer(targetPlayer.getUniqueId()
 								.toString(), null);
 					} else {
-						UUIDFetcher fetcher = new UUIDFetcher(Arrays.asList(target));
+						UUIDFetcher fetcher = new UUIDFetcher(
+								Arrays.asList(target));
 						Map<String, UUID> response = null;
 						try {
-						response = fetcher.call();
-						PlayerLoader.removePlayer(response.get(target).toString(), null);
+							response = fetcher.call();
+							PlayerLoader.removePlayer(response.get(target)
+									.toString(), null);
 						} catch (Exception e) {
-						sender.sendMessage("We were unable to reset this player suffix.");
-						e.printStackTrace();
+							sender.sendMessage("We were unable to reset this player suffix.");
+							e.printStackTrace();
 						}
-						
-						
+
 					}
 
 					if (targetPlayer != null) {
